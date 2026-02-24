@@ -1,0 +1,56 @@
+@use '/src/sass/mixins.scss' as *;
+
+.menubar {
+  background-color: var(--elem-color);
+  box-shadow: 0px 2px 4px 0px #0000000f;
+  padding: 23px 0;
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &-title {
+    @include text-preset-2;
+    font-size: 14px;
+  }
+}
+
+.theme-switch {
+  background-color: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+
+  &-icon {
+    width: 12px;
+    height: 12px;
+    transform: rotate(-25deg);
+  }
+
+  &-text {
+    @include text-preset-6-semibold;
+  }
+}
+
+@media (min-width: 1024px) {
+  .menubar {
+    &-title {
+      font-size: 24px;
+    }
+  }
+
+  .theme-switch {
+    &-icon {
+      width: 15px;
+      height: 15px;
+    }
+
+    &-text {
+      @include text-preset-4-semibold;
+    }
+  }
+}

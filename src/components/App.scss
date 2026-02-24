@@ -1,0 +1,7 @@
+@use '/src/sass/mixins.scss' as *;
+
+.app {
+  height: 1000px;
+  color: var(--text-color);
+  background-color: var(--bg-color);
+}

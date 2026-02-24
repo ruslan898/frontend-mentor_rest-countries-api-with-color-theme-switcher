@@ -37,3 +37,16 @@ img {
 body {
   font-family: "Nunito Sans", sans-serif;
 }
+
+:root {
+  --text-color: #111517;
+  --bg-color: #FCFCFC;
+  --elem-color: #FFFFFF;
+  --input-color: #808080;
+  --icon-color: #B2B2B2;
+}
+
+.container {
+  width: clamp(343px, 90%, 1280px);
+  margin: 0 auto;
+}
