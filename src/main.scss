@@ -50,3 +50,8 @@ body {
   width: clamp(343px, 90%, 1280px);
   margin: 0 auto;
 }
+
+button {
+  border: none;
+  cursor: pointer;
+}

@@ -4,4 +4,34 @@
   height: 1000px;
   color: var(--text-color);
   background-color: var(--bg-color);
+
+  .index {
+    padding: 24px 0 65px;
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 48px;
+    }
+  }
+
+  .actions-block {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+}
+
+@media (min-width: 768px) {
+  .app {
+    .index {
+      padding: 24px 0 65px;
+    }
+
+    .actions-block {
+      flex-direction: row;
+      gap: 8px;
+    }
+  }
 }
