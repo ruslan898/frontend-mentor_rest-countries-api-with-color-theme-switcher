@@ -1,0 +1,27 @@
+.detail {
+  padding: 40px 0 55px;
+
+  .container {
+    padding: 0 11px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 64px;
+  }
+}
+
+@media (min-width: 768px) {
+  .detail {
+    .container {
+      padding: 0 58px;
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  .detail {
+    .container {
+      padding: 0;
+    }
+  }
+}
