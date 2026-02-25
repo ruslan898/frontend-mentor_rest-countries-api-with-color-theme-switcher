@@ -1,6 +1,7 @@
 import MenuBar from './ui/menuBar/MenuBar';
 import SearchBar from './ui/searchBar/SearchBar';
 import DropDown from './ui/dropDown/DropDown';
+import Card from './ui/card/Card';
 import './app.scss';
 
 export default function App() {
@@ -13,6 +14,15 @@ export default function App() {
             <SearchBar />
             <DropDown />
           </div>
+          <ul className='cards-grid'>
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+          </ul>
         </div>
       </main>
     </div>

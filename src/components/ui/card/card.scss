@@ -1,0 +1,46 @@
+@use '/src/sass/mixins.scss' as *;
+
+.card {
+  width: 264px;
+  height: 336px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  box-shadow: 0px 0px 7px 2px #0000001a;
+  background-color: var(--elem-color);
+  overflow: hidden;
+
+  &-img {
+    width: 100%;
+    height: 160px;
+    background-color: blue;
+  }
+
+  &-descr {
+    padding: 22px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  &-title {
+    @include text-preset-3;
+  }
+
+  &-info {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    &-item {
+      list-style: none;
+      @include text-preset-5-light;
+    }
+
+    &-category {
+      font-weight: 600;
+      margin-right: 5px;
+    }
+  }
+}

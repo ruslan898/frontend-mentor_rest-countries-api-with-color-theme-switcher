@@ -1,8 +1,8 @@
 @use '/src/sass/mixins.scss' as *;
 
 .searchbar {
+  width: 100%;
   height: 100%;
-  width: clamp(343px, 100%, 480px);
   padding: 16px 70px;
   @include text-preset-6-regular;
   border: none;
@@ -23,6 +23,7 @@
 }
 
 .input-wrapper {
+  width: clamp(343px, 100%, 480px);
   height: 48px;
   position: relative;
 }
