@@ -1,11 +1,11 @@
-import SearchBar from '../searchBar/SearchBar';
-import DropDown from '../dropDown/DropDown';
-import Card from '../card/Card';
+import SearchBar from '../../components/ui/searchBar/SearchBar';
+import DropDown from '../../components/ui/dropDown/DropDown';
+import Card from '../../components/ui/card/Card';
 import './index.scss';
 
 export default function Index() {
   return (
-    <main className="index">
+    <div className="index">
       <div className="container">
         <div className="actions-block">
           <SearchBar />
@@ -21,6 +21,6 @@ export default function Index() {
           <Card />
         </ul>
       </div>
-    </main>
+    </div>
   );
 }
