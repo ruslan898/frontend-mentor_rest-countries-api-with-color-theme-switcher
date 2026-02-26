@@ -1,14 +1,16 @@
-import MenuBar from './ui/menuBar/MenuBar';
-import Index from './ui/index/Index';
-import Detail from './ui/detail/Detail';
+import { Routes, Route } from 'react-router-dom';
+import Layout from './layout/Layout';
+import Index from '../pages/index/Index';
+import Detail from '../pages/detail/Detail';
 import './app.scss';
 
 export default function App() {
   return (
-    <div className="app">
-      <MenuBar />
-      <Index />
-      {/* <Detail /> */}
-    </div>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Index />} />
+        <Route path="/:detail" element={<Detail />} />
+      </Route>
+    </Routes>
   );
 }
