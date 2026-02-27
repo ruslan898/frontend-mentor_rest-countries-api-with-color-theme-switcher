@@ -1,7 +1,6 @@
 import './cardDetail.scss';
 
 export default function CardDetail({ data }) {
-  console.log(data);
 
   const {
     name: { common: name, nativeName },

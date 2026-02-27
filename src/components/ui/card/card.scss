@@ -10,7 +10,7 @@
   color: var(--text-color);
   background-color: var(--elem-color);
   overflow: hidden;
-  transition: 0.3s all;
+  transition: 0.3s transform;
   cursor: pointer;
 
   &:hover {
