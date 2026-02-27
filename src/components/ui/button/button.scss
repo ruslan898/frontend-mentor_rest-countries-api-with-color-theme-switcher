@@ -11,6 +11,11 @@
   justify-content: center;
   align-items: center;
   gap: 8px;
+  transition: 0.2s transform;
+
+  &:hover {
+    transform: scale(1.05);
+  }
 
   &-icon {
     width: 15px;

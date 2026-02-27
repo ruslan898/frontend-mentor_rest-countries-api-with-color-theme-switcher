@@ -1,7 +1,9 @@
+import { Link } from 'react-router-dom';
+import countries from 'i18n-iso-countries';
+import en from 'i18n-iso-countries/langs/en.json';
 import './cardDetail.scss';
 
 export default function CardDetail({ data }) {
-
   const {
     name: { common: name, nativeName },
     region,
@@ -12,6 +14,7 @@ export default function CardDetail({ data }) {
     population,
     languages,
     currencies,
+    borders,
   } = data ?? {};
 
   const languagesFormatted = Object.values(languages).sort().join(', ');
@@ -37,6 +40,24 @@ export default function CardDetail({ data }) {
     .join(', ');
 
   const defaultValue = '-';
+
+  countries.registerLocale(en);
+
+  function getCountryNameFromCode(code) {
+    return countries.getName(code, 'en');
+  }
+
+  const borderCountriesItems = borders.map((code) => {
+    const countryName = getCountryNameFromCode(code);
+
+    return (
+      <Link to={`/${countryName}`}>
+        <li>
+          <button className="border-countries-list-item">{countryName}</button>
+        </li>
+      </Link>
+    );
+  });
 
   return (
     <section className="card-detail">
@@ -87,19 +108,7 @@ export default function CardDetail({ data }) {
 
         <div className="border-countries">
           <h3 className="border-countries-title">Border Countries:</h3>
-          <ul className="border-countries-list">
-            <li>
-              <button className="border-countries-list-item">France</button>
-            </li>
-            <li>
-              <button className="border-countries-list-item">Germany</button>
-            </li>
-            <li>
-              <button className="border-countries-list-item">
-                Netherlands
-              </button>
-            </li>
-          </ul>
+          <ul className="border-countries-list">{borderCountriesItems}</ul>
         </div>
       </div>
     </section>

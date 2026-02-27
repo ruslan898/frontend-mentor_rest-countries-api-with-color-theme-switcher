@@ -2,6 +2,7 @@
   padding: 40px 0 55px;
 
   .container {
+    max-width: 570px;
     padding: 0 11px;
     display: flex;
     flex-direction: column;
@@ -10,17 +11,10 @@
   }
 }
 
-@media (min-width: 768px) {
-  .detail {
-    .container {
-      padding: 0 58px;
-    }
-  }
-}
-
 @media (min-width: 1024px) {
   .detail {
     .container {
+      max-width: unset;
       padding: 0;
     }
   }

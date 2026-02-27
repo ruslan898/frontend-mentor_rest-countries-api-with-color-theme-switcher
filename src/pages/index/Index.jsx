@@ -16,8 +16,6 @@ export default function Index() {
   if (error) return <div>failed to load</div>;
   if (isLoading) return <div>loading...</div>;
 
-  // console.log(data);
-
   function search(value) {
     const valueLow = value.toLowerCase();
 
@@ -78,8 +76,6 @@ export default function Index() {
       </Link>
     );
   });
-
-  // console.log(cards);
 
   return (
     <div className="index">

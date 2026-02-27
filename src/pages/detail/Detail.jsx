@@ -8,6 +8,7 @@ export default function Detail() {
   const { name } = useParams();
 
   const { data, error, isLoading } = useFetch(`name/${name}`);
+  console.log(data);
 
   if (error) return <div>failed to load</div>;
   if (isLoading) return <div>loading...</div>;
