@@ -9,7 +9,7 @@ export default function App() {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<Index />} />
-        <Route path="/:detail" element={<Detail />} />
+        <Route path="/:name" element={<Detail />} />
       </Route>
     </Routes>
   );

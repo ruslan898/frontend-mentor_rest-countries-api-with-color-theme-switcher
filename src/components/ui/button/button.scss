@@ -1,6 +1,7 @@
 @use '/src/sass/mixins.scss' as *;
 
 .btn {
+  color: var(--text-color);
   background-color: var(--elem-color);
   padding: 8px 24px;
   @include text-preset-5-light;

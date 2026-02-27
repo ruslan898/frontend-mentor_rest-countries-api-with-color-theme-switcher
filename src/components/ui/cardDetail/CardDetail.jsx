@@ -1,32 +1,70 @@
 import './cardDetail.scss';
 
-export default function CardDetail() {
+export default function CardDetail({ data }) {
+  console.log(data);
+
+  const {
+    name: { common: name, nativeName },
+    region,
+    subregion,
+    capital: [capital] = [],
+    tld: [tld],
+    flags: { png: flag, alt },
+    population,
+    languages,
+    currencies,
+  } = data ?? {};
+
+  const languagesFormatted = Object.values(languages).sort().join(', ');
+
+  const populationFormatted = new Intl.NumberFormat('en-US').format(population);
+
+  const currenciesFormatted = Object.values(currencies || {})
+    .reduce((arr, item) => {
+      arr.push(item.name);
+      return arr;
+    }, [])
+    .sort()
+    .join(', ');
+
+  const nativeNameFormatted = Object.values(nativeName)
+    .reduce((arr, item) => {
+      if (!arr.includes(item.common)) {
+        arr.push(item.common);
+      }
+      return arr;
+    }, [])
+    .sort()
+    .join(', ');
+
+  const defaultValue = '-';
+
   return (
     <section className="card-detail">
-      <div className="card-detail-img"></div>
+      <img src={flag} alt={alt} className="card-detail-img"></img>
       <div className="card-detail-descr">
-        <h2 className="card-detail-title">Belgium</h2>
+        <h2 className="card-detail-title">{name}</h2>
         <div className="card-detail-info">
           <ul className="card-detail-list">
             <li className="card-detail-list-item">
               <span className="card-detail-list-category">Native Name:</span>
-              België
+              {nativeNameFormatted}
             </li>
             <li className="card-detail-list-item">
               <span className="card-detail-list-category">Population:</span>
-              11,319,511
+              {populationFormatted}
             </li>
             <li className="card-detail-list-item">
               <span className="card-detail-list-category">Region:</span>
-              Europe
+              {region}
             </li>
             <li className="card-detail-list-item">
               <span className="card-detail-list-category">Sub Region:</span>
-              Western Europe
+              {subregion || defaultValue}
             </li>
             <li className="card-detail-list-item">
               <span className="card-detail-list-category">Capital:</span>
-              Brussels
+              {capital || defaultValue}
             </li>
           </ul>
 
@@ -35,15 +73,15 @@ export default function CardDetail() {
               <span className="card-detail-list-category">
                 Top Level Domain:
               </span>
-              .be
+              {tld}
             </li>
             <li className="card-detail-list-item">
               <span className="card-detail-list-category">Currencies:</span>
-              Euro
+              {currenciesFormatted || defaultValue}
             </li>
             <li className="card-detail-list-item">
               <span className="card-detail-list-category">Languages:</span>
-              Dutch, French, German
+              {languagesFormatted}
             </li>
           </ul>
         </div>

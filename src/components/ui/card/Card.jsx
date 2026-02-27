@@ -1,23 +1,29 @@
-import './card.scss'
+import './card.scss';
 
-export default function Card() {
+export default function Card({
+  capital,
+  name,
+  flag: { img, alt },
+  population,
+  region,
+}) {
   return (
     <div className="card">
-      <div className="card-img"></div>
+      <img src={img} alt={alt} className="card-img"></img>
       <div className="card-descr">
-        <h2 className="card-title">Germany</h2>
+        <h2 className="card-title">{name}</h2>
         <ul className="card-info">
           <li className="card-info-item">
             <span className="card-info-category">Population:</span>
-            81,770,900
+            {population}
           </li>
           <li className="card-info-item">
             <span className="card-info-category">Region:</span>
-            Europe
+            {region}
           </li>
           <li className="card-info-item">
             <span className="card-info-category">Capital:</span>
-            Berlin
+            {capital}
           </li>
         </ul>
       </div>
