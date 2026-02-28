@@ -8,7 +8,7 @@ export function useFetch(url) {
   }
 
   const { data, error, isLoading } = useSWR(
-    `https://restcountries.com/v3.1/${url}`,
+    `https://restcountries.com${url}`,
     fetchData,
   );
 
