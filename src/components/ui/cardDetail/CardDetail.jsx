@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
-import countries from 'i18n-iso-countries';
-import en from 'i18n-iso-countries/langs/en.json';
+import { getCountryInfo } from '../../../utility/getCountryInfo';
 import './cardDetail.scss';
 
 export default function CardDetail({ data }) {
@@ -9,7 +8,7 @@ export default function CardDetail({ data }) {
     region,
     subregion,
     capital: [capital] = [],
-    tld: [tld],
+    tld: [tld] = [],
     flags: { png: flag, alt },
     population,
     languages,
@@ -41,23 +40,21 @@ export default function CardDetail({ data }) {
 
   const defaultValue = '-';
 
-  countries.registerLocale(en);
+  const borderCountriesItems =
+    borders &&
+    borders.map((code) => {
+      const countryName = getCountryInfo('name', code);
 
-  function getCountryNameFromCode(code) {
-    return countries.getName(code, 'en');
-  }
-
-  const borderCountriesItems = borders.map((code) => {
-    const countryName = getCountryNameFromCode(code);
-
-    return (
-      <Link to={`/${countryName}`}>
-        <li>
-          <button className="border-countries-list-item">{countryName}</button>
-        </li>
-      </Link>
-    );
-  });
+      return (
+        <Link to={`/${countryName || code}`} key={code}>
+          <li>
+            <button className="border-countries-list-item">
+              {countryName || code}
+            </button>
+          </li>
+        </Link>
+      );
+    });
 
   return (
     <section className="card-detail">
@@ -68,15 +65,15 @@ export default function CardDetail({ data }) {
           <ul className="card-detail-list">
             <li className="card-detail-list-item">
               <span className="card-detail-list-category">Native Name:</span>
-              {nativeNameFormatted}
+              {nativeNameFormatted || defaultValue}
             </li>
             <li className="card-detail-list-item">
               <span className="card-detail-list-category">Population:</span>
-              {populationFormatted}
+              {populationFormatted || defaultValue}
             </li>
             <li className="card-detail-list-item">
               <span className="card-detail-list-category">Region:</span>
-              {region}
+              {region || defaultValue}
             </li>
             <li className="card-detail-list-item">
               <span className="card-detail-list-category">Sub Region:</span>
@@ -93,7 +90,7 @@ export default function CardDetail({ data }) {
               <span className="card-detail-list-category">
                 Top Level Domain:
               </span>
-              {tld}
+              {tld || defaultValue}
             </li>
             <li className="card-detail-list-item">
               <span className="card-detail-list-category">Currencies:</span>
@@ -101,14 +98,16 @@ export default function CardDetail({ data }) {
             </li>
             <li className="card-detail-list-item">
               <span className="card-detail-list-category">Languages:</span>
-              {languagesFormatted}
+              {languagesFormatted || defaultValue}
             </li>
           </ul>
         </div>
 
         <div className="border-countries">
           <h3 className="border-countries-title">Border Countries:</h3>
-          <ul className="border-countries-list">{borderCountriesItems}</ul>
+          <ul className="border-countries-list">
+            {borderCountriesItems || defaultValue}
+          </ul>
         </div>
       </div>
     </section>
