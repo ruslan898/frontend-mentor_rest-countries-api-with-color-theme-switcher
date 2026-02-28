@@ -1,17 +1,22 @@
 import { useParams } from 'react-router-dom';
 import { useFetch } from '../../components/hooks/useFetch';
+import { getCountryInfo } from '../../utility/getCountryInfo';
 import Button from '../../components/ui/button/Button';
 import CardDetail from '../../components/ui/cardDetail/CardDetail';
+import Placeholder from '../../components/ui/placeholder/Placeholder';
 import './detail.scss';
 
 export default function Detail() {
   const { name } = useParams();
 
-  const { data, error, isLoading } = useFetch(`name/${name}`);
-  console.log(data);
+  const countryCode = getCountryInfo('code', name);
 
-  if (error) return <div>failed to load</div>;
-  if (isLoading) return <div>loading...</div>;
+  const { data, error, isLoading } = useFetch(
+    `/v3.1/alpha/${countryCode || name}`,
+  );
+
+  if (error) return <Placeholder type="error" className="pos-center" />;
+  if (isLoading) return <Placeholder type="loading" className="pos-center" />;
 
   return (
     <div className="detail">

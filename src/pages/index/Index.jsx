@@ -4,6 +4,7 @@ import { useFetch } from '../../components/hooks/useFetch';
 import SearchBar from '../../components/ui/searchBar/SearchBar';
 import DropDown from '../../components/ui/dropDown/DropDown';
 import Card from '../../components/ui/card/Card';
+import Placeholder from '../../components/ui/placeholder/Placeholder';
 import './index.scss';
 
 export default function Index() {
@@ -11,10 +12,10 @@ export default function Index() {
   const [filterVal, setFilterVal] = useState('');
 
   const { data, error, isLoading } = useFetch(
-    'all?fields=name,flags,capital,region,population',
+    '/v3.1/all?fields=name,flags,capital,region,population,cca3',
   );
-  if (error) return <div>failed to load</div>;
-  if (isLoading) return <div>loading...</div>;
+  if (error) return <Placeholder type="error" className="pos-center" />;
+  if (isLoading) return <Placeholder type="loading" className="pos-center" />;
 
   function search(value) {
     const valueLow = value.toLowerCase();
@@ -64,7 +65,7 @@ export default function Index() {
     );
 
     return (
-      <Link to={`/${name}`} className="link">
+      <Link to={`/${name}`} className="link" key={name}>
         <Card
           capital={capital}
           name={name}
@@ -77,6 +78,13 @@ export default function Index() {
     );
   });
 
+  const displayedItems =
+    cards.length > 0 ? (
+      cards
+    ) : (
+      <Placeholder type="not-found" className="pos-center" />
+    );
+
   return (
     <div className="index">
       <div className="container">
@@ -84,7 +92,7 @@ export default function Index() {
           <SearchBar value={searchVal} onInputChange={handleInputChange} />
           <DropDown onFilter={changeFilter} filterVal={filterVal} />
         </div>
-        <ul className="cards-grid">{cards}</ul>
+        <ul className="cards-grid">{displayedItems}</ul>
       </div>
     </div>
   );
