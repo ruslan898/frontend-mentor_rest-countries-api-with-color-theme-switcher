@@ -38,11 +38,18 @@ body {
   font-family: "Nunito Sans", sans-serif;
 }
 
-:root {
+.light {
   --text-color: #111517;
   --bg-color: #FCFCFC;
   --elem-color: #FFFFFF;
   --input-color: #808080;
+}
+
+.dark {
+  --text-color: #FFFFFF;
+  --bg-color: #202C37;
+  --elem-color: #2B3945;
+  --input-color: #FFFFFF;
 }
 
 .container {

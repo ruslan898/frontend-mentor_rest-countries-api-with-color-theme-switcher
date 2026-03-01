@@ -13,33 +13,17 @@ export default function MenuBar() {
     return themeFromLocalStorage || 'light';
   }
 
-  const varsLight = [
-    { varName: '--text-color', varValue: '#111517' },
-    { varName: '--bg-color', varValue: '#FCFCFC' },
-    { varName: '--elem-color', varValue: '#FFFFFF' },
-    { varName: '--input-color', varValue: '#808080' },
-  ];
-
-  const varsDark = [
-    { varName: '--text-color', varValue: '#FFFFFF' },
-    { varName: '--bg-color', varValue: '#202C37' },
-    { varName: '--elem-color', varValue: '#2B3945' },
-    { varName: '--input-color', varValue: '#FFFFFF' },
-  ];
-
-  function changeColor(varsArr) {
+  function changeColor(className) {
     const root = document.documentElement;
-    varsArr.forEach((varObj) => {
-      const { varName, varValue } = varObj;
-      root.style.setProperty(varName, varValue);
-    });
+    root.classList.remove(...root.classList);
+    root.classList.add(className);
   }
 
   useEffect(() => {
     if (theme === 'light') {
-      changeColor(varsLight);
+      changeColor('light');
     } else {
-      changeColor(varsDark);
+      changeColor('dark');
     }
   }, [theme]);
 
