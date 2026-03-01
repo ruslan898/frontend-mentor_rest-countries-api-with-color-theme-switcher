@@ -48,13 +48,14 @@ export default function CardDetail({ data }) {
       const countryName = getCountryInfo('name', code);
 
       return (
-        <Link to={`/${countryName || code}`} key={code}>
-          <li>
-            <button className="border-countries-list-item">
-              {countryName || code}
-            </button>
-          </li>
-        </Link>
+        <li key={code}>
+          <Link
+            to={`/${countryName || code}`}
+            className="border-countries-list-item"
+          >
+            {countryName || code}
+          </Link>
+        </li>
       );
     });
 

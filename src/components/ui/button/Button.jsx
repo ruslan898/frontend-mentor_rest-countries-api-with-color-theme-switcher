@@ -6,10 +6,10 @@ import './button.scss';
 export default function Button() {
   return (
     <Link to={'..'} className='link'>
-      <button className="btn">
+      <div className="btn">
         <FontAwesomeIcon icon={faArrowLeft} className="btn-icon" />
         <span>Back</span>
-      </button>
+      </div>
     </Link>
   );
 }

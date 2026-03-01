@@ -40,13 +40,11 @@
     gap: 8px;
 
     &-item {
+      width: 100%;
+      text-align: left;
+      background-color: transparent;
       padding: 0 24px;
       cursor: pointer;
-
-      button {
-        background-color: transparent;
-        padding: 0;
-      }
     }
   }
 }

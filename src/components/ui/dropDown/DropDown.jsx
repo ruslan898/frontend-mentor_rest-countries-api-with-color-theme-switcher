@@ -29,41 +29,59 @@ export default function DropDown({ onFilter, filterVal }) {
       </button>
       {dropDownShown && (
         <ul className="dropdown-menu">
-          <li
-            className="dropdown-menu-item"
-            onClick={() => handleFilterChange('')}
-          >
-            <button type="button">All</button>
+          <li>
+            <button
+              type="button"
+              className="dropdown-menu-item"
+              onClick={() => handleFilterChange('')}
+            >
+              All
+            </button>
           </li>
-          <li
-            className="dropdown-menu-item"
-            onClick={() => handleFilterChange('Africa')}
-          >
-            <button type="button">Africa</button>
+          <li>
+            <button
+              type="button"
+              className="dropdown-menu-item"
+              onClick={() => handleFilterChange('')}
+            >
+              Africa
+            </button>
           </li>
-          <li
-            className="dropdown-menu-item"
-            onClick={() => handleFilterChange('Americas')}
-          >
-            <button type="button">Americas</button>
+          <li>
+            <button
+              type="button"
+              className="dropdown-menu-item"
+              onClick={() => handleFilterChange('Americas')}
+            >
+              Americas
+            </button>
           </li>
-          <li
-            className="dropdown-menu-item"
-            onClick={() => handleFilterChange('Asia')}
-          >
-            <button type="button">Asia</button>
+          <li>
+            <button
+              type="button"
+              className="dropdown-menu-item"
+              onClick={() => handleFilterChange('Asia')}
+            >
+              Asia
+            </button>
           </li>
-          <li
-            className="dropdown-menu-item"
-            onClick={() => handleFilterChange('Europe')}
-          >
-            <button type="button">Europe</button>
+          <li>
+            <button
+              type="button"
+              className="dropdown-menu-item"
+              onClick={() => handleFilterChange('Europe')}
+            >
+              Europe
+            </button>
           </li>
-          <li
-            className="dropdown-menu-item"
-            onClick={() => handleFilterChange('Oceania')}
-          >
-            <button type="button">Oceania</button>
+          <li>
+            <button
+              type="button"
+              className="dropdown-menu-item"
+              onClick={() => handleFilterChange('Oceania')}
+            >
+              Oceania
+            </button>
           </li>
         </ul>
       )}
