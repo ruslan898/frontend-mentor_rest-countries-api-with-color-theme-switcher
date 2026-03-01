@@ -9,6 +9,7 @@ export default function SearchBar({ value, onInputChange }) {
       <input
         type="text"
         placeholder="Search for a country…"
+        aria-label="Search for a country"
         name="search"
         className="searchbar"
         value={value}

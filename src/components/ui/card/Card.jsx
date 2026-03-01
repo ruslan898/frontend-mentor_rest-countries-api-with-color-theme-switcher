@@ -8,7 +8,7 @@ export default function Card({
   region,
 }) {
   return (
-    <div className="card">
+    <article className="card">
       <img src={img} alt={alt} className="card-img"></img>
       <div className="card-descr">
         <h2 className="card-title">{name}</h2>
@@ -27,6 +27,6 @@ export default function Card({
           </li>
         </ul>
       </div>
-    </div>
+    </article>
   );
 }

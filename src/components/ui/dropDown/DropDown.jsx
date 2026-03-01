@@ -17,7 +17,11 @@ export default function DropDown({ onFilter, filterVal }) {
 
   return (
     <div className="dropdown">
-      <button type='button'  className="dropdown-button" onClick={toggleDropdown}>
+      <button
+        type="button"
+        className="dropdown-button"
+        onClick={toggleDropdown}
+      >
         <span className="dropdown-button-text">
           {filterVal ? filterVal : 'Filter by Region'}
         </span>
@@ -29,37 +33,37 @@ export default function DropDown({ onFilter, filterVal }) {
             className="dropdown-menu-item"
             onClick={() => handleFilterChange('')}
           >
-            All
+            <button type="button">All</button>
           </li>
           <li
             className="dropdown-menu-item"
             onClick={() => handleFilterChange('Africa')}
           >
-            Africa
+            <button type="button">Africa</button>
           </li>
           <li
             className="dropdown-menu-item"
             onClick={() => handleFilterChange('Americas')}
           >
-            Americas
+            <button type="button">Americas</button>
           </li>
           <li
             className="dropdown-menu-item"
             onClick={() => handleFilterChange('Asia')}
           >
-            Asia
+            <button type="button">Asia</button>
           </li>
           <li
             className="dropdown-menu-item"
             onClick={() => handleFilterChange('Europe')}
           >
-            Europe
+            <button type="button">Europe</button>
           </li>
           <li
             className="dropdown-menu-item"
             onClick={() => handleFilterChange('Oceania')}
           >
-            Oceania
+            <button type="button">Oceania</button>
           </li>
         </ul>
       )}

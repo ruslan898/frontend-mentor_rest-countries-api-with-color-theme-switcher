@@ -4,33 +4,35 @@ import './cardDetail.scss';
 
 export default function CardDetail({ data }) {
   const {
-    name: { common: name, nativeName },
-    region,
-    subregion,
+    name: { common: name, nativeName } = {},
+    region = '',
+    subregion = '',
     capital: [capital = ''] = [],
     tld: [tld = ''] = [],
-    flags: { png: flag, alt },
-    population,
-    languages,
-    currencies,
-    borders,
+    flags: { png: flag, alt } = {},
+    population = 0,
+    languages = {},
+    currencies = {},
+    borders = [],
   } = data ?? {};
 
-  const languagesFormatted = Object.values(languages).sort().join(', ');
+  const languagesFormatted = Object.values(languages ?? {})
+    .sort()
+    .join(', ');
 
   const populationFormatted = new Intl.NumberFormat('en-US').format(population);
 
-  const currenciesFormatted = Object.values(currencies || {})
+  const currenciesFormatted = Object.values(currencies ?? {})
     .reduce((arr, item) => {
-      arr.push(item.name);
+      if (item?.name) arr.push(item.name);
       return arr;
     }, [])
     .sort()
     .join(', ');
 
-  const nativeNameFormatted = Object.values(nativeName)
+  const nativeNameFormatted = Object.values(nativeName ?? {})
     .reduce((arr, item) => {
-      if (!arr.includes(item.common)) {
+      if (item?.common && !arr.includes(item.common)) {
         arr.push(item.common);
       }
       return arr;
@@ -38,7 +40,7 @@ export default function CardDetail({ data }) {
     .sort()
     .join(', ');
 
-  const defaultValue = '-';
+  const defaultValue = 'N/A';
 
   const borderCountriesItems =
     borders &&
@@ -106,7 +108,9 @@ export default function CardDetail({ data }) {
         <div className="border-countries">
           <h3 className="border-countries-title">Border Countries:</h3>
           <ul className="border-countries-list">
-            {borderCountriesItems || defaultValue}
+            {borderCountriesItems.length > 0
+              ? borderCountriesItems
+              : defaultValue}
           </ul>
         </div>
       </div>
