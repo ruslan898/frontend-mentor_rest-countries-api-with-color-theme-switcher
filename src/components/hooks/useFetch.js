@@ -10,6 +10,10 @@ export function useFetch(url) {
   const { data, error, isLoading } = useSWR(
     `https://restcountries.com${url}`,
     fetchData,
+    {
+      revalidateOnFocus: false,
+      revalidateIfStale: false,
+    },
   );
 
   return { data, error, isLoading };
