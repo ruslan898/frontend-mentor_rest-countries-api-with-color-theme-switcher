@@ -65,16 +65,18 @@ export default function Index() {
     );
 
     return (
-      <Link to={`/${name}`} className="link" key={name}>
-        <Card
-          capital={capital}
-          name={name}
-          flag={flag}
-          population={populationFormatted}
-          region={region}
-          key={name}
-        />
-      </Link>
+      <li key={name}>
+        <Link to={`/${name}`} className="link">
+          <Card
+            capital={capital}
+            name={name}
+            flag={flag}
+            population={populationFormatted}
+            region={region}
+            key={name}
+          />
+        </Link>
+      </li>
     );
   });
 
