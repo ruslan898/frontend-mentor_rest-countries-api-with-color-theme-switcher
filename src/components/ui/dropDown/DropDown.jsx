@@ -42,7 +42,7 @@ export default function DropDown({ onFilter, filterVal }) {
             <button
               type="button"
               className="dropdown-menu-item"
-              onClick={() => handleFilterChange('')}
+              onClick={() => handleFilterChange('Africa')}
             >
               Africa
             </button>
