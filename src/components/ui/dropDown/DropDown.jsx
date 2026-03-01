@@ -17,7 +17,7 @@ export default function DropDown({ onFilter, filterVal }) {
 
   return (
     <div className="dropdown">
-      <button className="dropdown-button" onClick={toggleDropdown}>
+      <button type='button'  className="dropdown-button" onClick={toggleDropdown}>
         <span className="dropdown-button-text">
           {filterVal ? filterVal : 'Filter by Region'}
         </span>
@@ -41,7 +41,7 @@ export default function DropDown({ onFilter, filterVal }) {
             className="dropdown-menu-item"
             onClick={() => handleFilterChange('Americas')}
           >
-            America
+            Americas
           </li>
           <li
             className="dropdown-menu-item"

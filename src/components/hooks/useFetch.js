@@ -1,8 +1,8 @@
 import useSWR from 'swr';
 
 export function useFetch(url) {
-  async function fetchData(url) {
-    const res = await fetch(url);
+  async function fetchData(urlStr) {
+    const res = await fetch(urlStr);
     const data = await res.json();
     return data;
   }
