@@ -1,15 +1,17 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useFetch } from '../../hooks/useFetch';
+import { useSearchState } from '../../features/search/hooks/useSearchState';
+import { search } from '../../utility/utils';
 import SearchBar from '../../components/ui/searchBar/SearchBar';
 import DropDown from '../../components/ui/dropDown/DropDown';
 import Card from '../../components/ui/card/Card';
 import Placeholder from '../../components/ui/placeholder/Placeholder';
 import './index.scss';
+import { useFilterState } from '../../features/filter/hooks/useFilterState';
 
 export default function Index() {
-  const [searchVal, setSearchVal] = useState('');
-  const [filterVal, setFilterVal] = useState('');
+  const { searchVal, handleInputChange } = useSearchState();
+  const { filterVal, filter, changeFilter } = useFilterState();
 
   const { data, error, isLoading } = useFetch(
     '/v3.1/all?fields=name,flags,capital,region,population,cca3',
@@ -17,37 +19,7 @@ export default function Index() {
   if (error) return <Placeholder type="error" className="pos-center" />;
   if (isLoading) return <Placeholder type="loading" className="pos-center" />;
 
-  function search(value) {
-    const valueLow = value.toLowerCase();
-
-    if (value.length > 1) {
-      return data.filter((item) => {
-        const nameLow = item.name.common.toLowerCase();
-        return nameLow.includes(valueLow);
-      });
-    } else {
-      return data;
-    }
-  }
-
-  function filter(arr) {
-    if (filterVal) {
-      return arr.filter((item) => item.region === filterVal);
-    } else {
-      return arr;
-    }
-  }
-
-  function handleInputChange(e) {
-    const inputValue = e.currentTarget.value;
-    setSearchVal(inputValue);
-  }
-
-  function changeFilter(value) {
-    setFilterVal(value);
-  }
-
-  const filteredData = filter(search(searchVal));
+  const filteredData = filter(search(searchVal, data));
 
   const cards = filteredData.map((item) => {
     const {

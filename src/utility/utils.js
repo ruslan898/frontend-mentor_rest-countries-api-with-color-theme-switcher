@@ -25,3 +25,16 @@ export function changeColor(className) {
   root.classList.remove(...root.classList);
   root.classList.add(className);
 }
+
+export function search(searchedValue, data) {
+  const searchedValueLow = searchedValue.toLowerCase();
+
+  if (searchedValue.length > 1) {
+    return data.filter((item) => {
+      const nameLow = item.name.common.toLowerCase();
+      return nameLow.includes(searchedValueLow);
+    });
+  } else {
+    return data;
+  }
+}

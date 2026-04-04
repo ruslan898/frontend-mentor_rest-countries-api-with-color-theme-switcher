@@ -1,19 +1,11 @@
-import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 import './dropDown.scss';
+import { useDropdownState } from '../../../features/dropdown/hooks/useDropdownState';
 
 export default function DropDown({ onFilter, filterVal }) {
-  const [dropDownShown, setDropdownShown] = useState(false);
-
-  function toggleDropdown() {
-    setDropdownShown(!dropDownShown);
-  }
-
-  function handleFilterChange(val) {
-    toggleDropdown();
-    onFilter(val);
-  }
+  const { dropDownShown, toggleDropdown, handleFilterChange } =
+    useDropdownState(onFilter);
 
   return (
     <div className="dropdown">
