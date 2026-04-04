@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { getCountryInfo } from '../../../utility/getCountryInfo';
+import { getCountryInfo } from '../../../utility/utils';
 import './cardDetail.scss';
 
 export default function CardDetail({ data }) {

@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
-import { useFetch } from '../../components/hooks/useFetch';
-import { getCountryInfo } from '../../utility/getCountryInfo';
+import { useFetch } from '../../hooks/useFetch';
+import { getCountryInfo } from '../../utility/utils';
 import Button from '../../components/ui/button/Button';
 import CardDetail from '../../components/ui/cardDetail/CardDetail';
 import Placeholder from '../../components/ui/placeholder/Placeholder';

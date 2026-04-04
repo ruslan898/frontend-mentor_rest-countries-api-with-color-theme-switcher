@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useFetch } from '../../components/hooks/useFetch';
+import { useFetch } from '../../hooks/useFetch';
 import SearchBar from '../../components/ui/searchBar/SearchBar';
 import DropDown from '../../components/ui/dropDown/DropDown';
 import Card from '../../components/ui/card/Card';
