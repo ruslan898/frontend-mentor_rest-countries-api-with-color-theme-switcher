@@ -3,10 +3,9 @@ import { useState } from "react";
 export function useSearchState() {
   const [searchVal, setSearchVal] = useState('');
 
-  function handleInputChange(e) {
-    const inputValue = e.currentTarget.value;
-    setSearchVal(inputValue);
+  function setSearch(value) {
+    setSearchVal(value);
   }
 
-  return {searchVal, handleInputChange}
+  return { searchVal, setSearch };
 }

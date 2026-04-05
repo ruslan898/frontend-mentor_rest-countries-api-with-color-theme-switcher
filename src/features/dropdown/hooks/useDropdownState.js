@@ -1,16 +1,11 @@
 import { useState } from 'react';
 
-export function useDropdownState(onFilter) {
+export function useDropdownState() {
   const [dropDownShown, setDropdownShown] = useState(false);
 
   function toggleDropdown() {
     setDropdownShown(!dropDownShown);
   }
 
-  function handleFilterChange(val) {
-    toggleDropdown();
-    onFilter(val);
-  }
-
-  return { dropDownShown, toggleDropdown, handleFilterChange };
+  return { dropDownShown, toggleDropdown };
 }

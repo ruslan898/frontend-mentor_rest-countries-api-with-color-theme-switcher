@@ -10,7 +10,7 @@ import './index.scss';
 import { useFilterState } from '../../features/filter/hooks/useFilterState';
 
 export default function Index() {
-  const { searchVal, handleInputChange } = useSearchState();
+  const { searchVal, setSearch } = useSearchState();
   const { filterVal, filter, changeFilter } = useFilterState();
 
   const { data, error, isLoading } = useFetch(
@@ -63,7 +63,7 @@ export default function Index() {
     <div className="index">
       <div className="container">
         <div className="actions-block">
-          <SearchBar value={searchVal} onInputChange={handleInputChange} />
+          <SearchBar value={searchVal} onInputChange={setSearch} />
           <DropDown onFilter={changeFilter} filterVal={filterVal} />
         </div>
         <ul className="cards-grid">{displayedItems}</ul>

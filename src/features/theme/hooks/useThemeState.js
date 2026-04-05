@@ -1,25 +1,19 @@
-import { useState, useEffect } from "react";
-import { getCurrentTheme, changeColor } from "../../../utility/utils";
+import { useState, useEffect } from 'react';
+import { getCurrentTheme, changeColor } from '../../../utility/utils';
 
 export function useThemeState() {
   const [theme, setTheme] = useState(getCurrentTheme());
 
   useEffect(() => {
-    if (theme === 'light') {
-      changeColor('light');
-    } else {
-      changeColor('dark');
-    }
+    changeColor(theme);
+  }, [theme]);
+
+  useEffect(() => {
+    localStorage.setItem('theme', theme);
   }, [theme]);
 
   function toggleTheme() {
-    if (theme === 'light') {
-      localStorage.setItem('theme', 'dark');
-      setTheme('dark');
-    } else {
-      localStorage.setItem('theme', 'light');
-      setTheme('light');
-    }
+    setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
   }
 
   return { theme, toggleTheme };

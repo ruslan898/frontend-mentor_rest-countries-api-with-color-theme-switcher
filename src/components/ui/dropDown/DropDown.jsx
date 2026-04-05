@@ -4,8 +4,12 @@ import './dropDown.scss';
 import { useDropdownState } from '../../../features/dropdown/hooks/useDropdownState';
 
 export default function DropDown({ onFilter, filterVal }) {
-  const { dropDownShown, toggleDropdown, handleFilterChange } =
-    useDropdownState(onFilter);
+  const { dropDownShown, toggleDropdown } = useDropdownState();
+
+  function handleFilterChange(val) {
+    toggleDropdown();
+    onFilter(val);
+  }
 
   return (
     <div className="dropdown">

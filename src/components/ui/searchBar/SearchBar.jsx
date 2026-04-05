@@ -13,7 +13,7 @@ export default function SearchBar({ value, onInputChange }) {
         name="search"
         className="searchbar"
         value={value}
-        onChange={onInputChange}
+        onChange={(e) => onInputChange(e.target.value)}
       />
     </div>
   );
