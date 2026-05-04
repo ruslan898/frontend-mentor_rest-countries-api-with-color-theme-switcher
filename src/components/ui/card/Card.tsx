@@ -1,12 +1,23 @@
 import './card.scss';
 
+type CardProps = {
+  capital: string;
+  name: string;
+  flag: {
+    img: string;
+    alt: string;
+  };
+  population: string;
+  region: string;
+};
+
 export default function Card({
   capital,
   name,
   flag: { img, alt },
   population,
   region,
-}) {
+}: CardProps) {
   return (
     <article className="card">
       <img src={img} alt={alt} className="card-img"></img>
@@ -23,7 +34,7 @@ export default function Card({
           </li>
           <li className="card-info-item">
             <span className="card-info-category">Capital:</span>
-            {capital}
+            {capital ?? 'N/A'}
           </li>
         </ul>
       </div>

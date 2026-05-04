@@ -1,20 +1,23 @@
 import { Link } from 'react-router-dom';
 import { getCountryInfo } from '../../../utility/utils';
 import './cardDetail.scss';
+import type { CountryDetail } from '../../../types';
 
-export default function CardDetail({ data }) {
+type CardDetailProps = { data: CountryDetail };
+
+export default function CardDetail({ data }: CardDetailProps) {
   const {
     name: { common: name, nativeName } = {},
-    region = '',
-    subregion = '',
-    capital: [capital = ''] = [],
-    tld: [tld = ''] = [],
-    flags: { png: flag, alt } = {},
-    population = 0,
-    languages = {},
-    currencies = {},
-    borders = [],
-  } = data ?? {};
+    region,
+    subregion,
+    capital: [capital],
+    tld: [tld],
+    flags: { png: flag, alt },
+    population,
+    languages,
+    currencies,
+    borders,
+  } = data;
 
   const languagesFormatted = Object.values(languages ?? {})
     .sort()
@@ -23,19 +26,23 @@ export default function CardDetail({ data }) {
   const populationFormatted = new Intl.NumberFormat('en-US').format(population);
 
   const currenciesFormatted = Object.values(currencies ?? {})
-    .reduce((arr, item) => {
-      if (item?.name) arr.push(item.name);
-      return arr;
+    .reduce<string[]>((arr, item) => {
+      if (item?.name) {
+        return [...arr, item.name];
+      } else {
+        return arr;
+      }
     }, [])
     .sort()
     .join(', ');
 
   const nativeNameFormatted = Object.values(nativeName ?? {})
-    .reduce((arr, item) => {
+    .reduce<string[]>((arr, item) => {
       if (item?.common && !arr.includes(item.common)) {
-        arr.push(item.common);
+        return [...arr, item.common];
+      } else {
+        return arr;
       }
-      return arr;
     }, [])
     .sort()
     .join(', ');

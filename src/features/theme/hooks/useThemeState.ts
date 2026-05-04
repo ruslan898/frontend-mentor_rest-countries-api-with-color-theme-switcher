@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import { getCurrentTheme, changeColor } from '../../../utility/utils';
+import type { Theme } from '../../../types';
 
 export function useThemeState() {
-  const [theme, setTheme] = useState(getCurrentTheme());
+  const [theme, setTheme] = useState<Theme>(getCurrentTheme());
 
   useEffect(() => {
     changeColor(theme);
@@ -12,7 +13,7 @@ export function useThemeState() {
     localStorage.setItem('theme', theme);
   }, [theme]);
 
-  function toggleTheme() {
+  function toggleTheme():void {
     setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
   }
 

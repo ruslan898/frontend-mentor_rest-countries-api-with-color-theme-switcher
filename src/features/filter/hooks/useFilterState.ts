@@ -1,9 +1,10 @@
 import { useState } from "react";
+import type { Filter, Country } from "../../../types";
 
 export function useFilterState() {
-  const [filterVal, setFilterVal] = useState('');
+  const [filterVal, setFilterVal] = useState<Filter>('');
 
-  function filter(arr) {
+  function filter(arr: Country[]): Country[] {
     if (filterVal) {
       return arr.filter((item) => item.region === filterVal);
     } else {
@@ -11,7 +12,7 @@ export function useFilterState() {
     }
   }
 
-  function changeFilter(value) {
+  function changeFilter(value: Filter):void {
     setFilterVal(value);
   }
 

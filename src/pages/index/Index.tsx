@@ -8,22 +8,26 @@ import Card from '../../components/ui/card/Card';
 import Placeholder from '../../components/ui/placeholder/Placeholder';
 import './index.scss';
 import { useFilterState } from '../../features/filter/hooks/useFilterState';
+import type { Country } from '../../types';
 
 export default function Index() {
   const { searchVal, setSearch } = useSearchState();
   const { filterVal, filter, changeFilter } = useFilterState();
 
-  const { data, error, isLoading } = useFetch(
+  const { data, error, isLoading } = useFetch<Country[]>(
     '/v3.1/all?fields=name,flags,capital,region,population,cca3',
   );
   if (error) return <Placeholder type="error" className="pos-center" />;
   if (isLoading) return <Placeholder type="loading" className="pos-center" />;
 
+  if (!data) {
+    return <Placeholder type="error" className="pos-center" />;
+  }
   const filteredData = filter(search(searchVal, data));
 
   const cards = filteredData.map((item) => {
     const {
-      capital,
+      capital: [capital],
       name: { common: name },
       flags: { png, alt },
       population,

@@ -1,7 +1,12 @@
 import { ThreeCircles } from 'react-loader-spinner';
 import './placeholder.scss';
 
-export default function Placeholder({ type = 'loading', className = '' }) {
+type PlaceholderProps = {
+  type: 'loading' | 'error' | 'not-found'
+  className?: string
+}
+
+export default function Placeholder({ type, className }: PlaceholderProps) {
   if (type === 'loading') {
     return (
       <ThreeCircles
@@ -27,9 +32,7 @@ export default function Placeholder({ type = 'loading', className = '' }) {
 
   if (type === 'not-found') {
     return (
-      <h2 className={`not-found-placeholder ${className}`}>
-        Nothing found
-      </h2>
+      <h2 className={`not-found-placeholder ${className}`}>Nothing found</h2>
     );
   }
 }

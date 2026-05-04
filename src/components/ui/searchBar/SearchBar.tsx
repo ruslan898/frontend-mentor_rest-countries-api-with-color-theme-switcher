@@ -2,7 +2,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import './searchBar.scss';
 
-export default function SearchBar({ value, onInputChange }) {
+type SearchBarProps = {
+  value: string;
+  onInputChange: (value: string) => void;
+};
+
+export default function SearchBar({ value, onInputChange }: SearchBarProps) {
   return (
     <div className="input-wrapper">
       <FontAwesomeIcon icon={faMagnifyingGlass} className="searchbar-icon" />

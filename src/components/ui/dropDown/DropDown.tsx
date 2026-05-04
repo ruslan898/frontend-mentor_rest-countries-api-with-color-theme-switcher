@@ -2,11 +2,17 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 import './dropDown.scss';
 import { useDropdownState } from '../../../features/dropdown/hooks/useDropdownState';
+import type { Filter } from '../../../types';
 
-export default function DropDown({ onFilter, filterVal }) {
+type DropDownProps = {
+  onFilter: (value: Filter) => void;
+  filterVal: Filter
+};
+
+export default function DropDown({ onFilter, filterVal }: DropDownProps) {
   const { dropDownShown, toggleDropdown } = useDropdownState();
 
-  function handleFilterChange(val) {
+  function handleFilterChange(val: Filter) {
     toggleDropdown();
     onFilter(val);
   }

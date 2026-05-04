@@ -1,9 +1,9 @@
 import { useState } from "react";
 
 export function useSearchState() {
-  const [searchVal, setSearchVal] = useState('');
+  const [searchVal, setSearchVal] = useState<string>('');
 
-  function setSearch(value) {
+  function setSearch(value:string):void {
     setSearchVal(value);
   }
 

@@ -1,9 +1,9 @@
 import { useState } from 'react';
 
 export function useDropdownState() {
-  const [dropDownShown, setDropdownShown] = useState(false);
+  const [dropDownShown, setDropdownShown] = useState<boolean>(false);
 
-  function toggleDropdown() {
+  function toggleDropdown():void {
     setDropdownShown(!dropDownShown);
   }
 
