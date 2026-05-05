@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 import Layout from './layout/Layout';
 import Index from '../pages/index/Index';
 import Detail from '../pages/detail/Detail';
+import ErrorPage from '../pages/errorPage/ErrorPage';
 import './app.scss';
 
 export default function App() {
@@ -10,6 +11,7 @@ export default function App() {
       <Route path="/" element={<Layout />}>
         <Route index element={<Index />} />
         <Route path="/:name" element={<Detail />} />
+        <Route path="*" element={<ErrorPage />} />
       </Route>
     </Routes>
   );
