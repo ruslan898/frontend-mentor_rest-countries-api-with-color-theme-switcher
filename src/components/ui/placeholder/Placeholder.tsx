@@ -1,10 +1,11 @@
+import { Link } from 'react-router-dom';
 import { ThreeCircles } from 'react-loader-spinner';
 import './placeholder.scss';
 
 type PlaceholderProps = {
-  type: 'loading' | 'error' | 'not-found'
-  className?: string
-}
+  type: 'loading' | 'error' | 'not-found';
+  className?: string;
+};
 
 export default function Placeholder({ type, className }: PlaceholderProps) {
   if (type === 'loading') {
@@ -23,10 +24,12 @@ export default function Placeholder({ type, className }: PlaceholderProps) {
 
   if (type === 'error') {
     return (
-      <h2 className={`error-placeholder ${className}`}>
-        Failed to load <br />
-        Please refresh the page
-      </h2>
+      <div className={`error-placeholder ${className}`}>
+        <h2 className='error-title'>
+          Failed to load data
+        </h2>
+        <Link to="/" className='error-link'>Back to main page</Link>
+      </div>
     );
   }
 
