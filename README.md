@@ -61,6 +61,21 @@ I want to continue practicing creating more complex app routing in future projec
 
 - [SWR](https://www.npmjs.com/package/swr) - This npm package helped me with convenient data fetching and loading/error state management
 
+### Countries API function
+
+The app requests `/api/countries` through a Netlify Function in
+`netlify/functions/countries.mts`. The function adds the API authorization header
+on the server and forwards list, code, and name lookups to the countries API.
+
+Configure `API_KEY` in Netlify with access to Functions for the deploy contexts
+you use. The function also supports the existing `VITE_API_KEY` variable for
+compatibility, but the frontend no longer reads it. Prefer `API_KEY` for new
+configuration because Vite exposes referenced `VITE_` variables to browser code.
+
+For local development with the function, run `netlify dev --port 8889` rather
+than the Vite-only development server. Upstream errors return a generic error
+response; existing loading and error UI continues to handle these responses.
+
 ### AI Collaboration
 
 I've used ChatGPT for debugging and helping me integrate third-party npm packages into my project
