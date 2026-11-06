@@ -53,11 +53,7 @@ export function search(searchedValue: string, data: Country[]): Country[] {
 export async function fetchAllCountries(urlArr: string[]) {
   const responses = await Promise.all(
     urlArr.map((url) => {
-      return fetch(url, {
-        headers: {
-          Authorization: `Bearer ${import.meta.env.VITE_API_KEY}`,
-        },
-      });
+      return fetch(url);
     }),
   );
 
@@ -73,11 +69,7 @@ export async function fetchAllCountries(urlArr: string[]) {
 }
 
 export async function fetchCountry(url: string) {
-  const res = await fetch(url, {
-    headers: {
-      Authorization: `Bearer ${import.meta.env.VITE_API_KEY}`,
-    },
-  });
+  const res = await fetch(url);
 
   if (!res.ok) {
     throw new Error(`HTTP error: status ${res.status}`);
