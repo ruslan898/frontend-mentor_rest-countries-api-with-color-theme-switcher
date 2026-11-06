@@ -1,5 +1,5 @@
 import useSWR from 'swr';
-import { fetchData } from '../utility/utils';
+import { fetchAllCountries, fetchCountry } from '../utility/utils';
 
 type FetchResult<T> = {
   data: T | undefined;
@@ -7,15 +7,13 @@ type FetchResult<T> = {
   isLoading: boolean;
 };
 
-export function useFetch<T>(url: string): FetchResult<T> {
-  const { data, error, isLoading } = useSWR<T>(
-    `https://restcountries.com${url}`,
-    fetchData,
-    {
-      revalidateOnFocus: false,
-      revalidateIfStale: false,
-    },
-  );
+export function useFetch<T>(url: string | string[]): FetchResult<T> {
+  const fetchFn = Array.isArray(url) ? fetchAllCountries : fetchCountry;
+
+  const { data, error, isLoading } = useSWR(url, fetchFn, {
+    revalidateOnFocus: false,
+    revalidateIfStale: false,
+  });
 
   return { data, error, isLoading };
 }

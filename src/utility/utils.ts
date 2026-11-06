@@ -8,9 +8,11 @@ export function getCountryInfo(
 ): string | undefined {
   countries.registerLocale(en);
 
-  if (!from) return
+  if (!from) return;
 
   if (result === 'name') {
+    if (from === 'UNK') return 'Kosovo';
+
     return countries.getName(from, 'en');
   }
 
@@ -39,19 +41,49 @@ export function changeColor(className: Theme): void {
   root.classList.add(className);
 }
 
-export function search(searchedValue: string, data: Country[]):Country[] {
+export function search(searchedValue: string, data: Country[]): Country[] {
   const searchedValueLow = searchedValue.toLowerCase();
+
   return data.filter((item) => {
-    const nameLow = item.name.common.toLowerCase();
+    const nameLow = item.names.common.toLowerCase();
     return nameLow.includes(searchedValueLow);
   });
 }
 
-export async function fetchData(urlStr: string): Promise<any> {
-  const res = await fetch(urlStr);
+export async function fetchAllCountries(urlArr: string[]) {
+  const responses = await Promise.all(
+    urlArr.map((url) => {
+      return fetch(url, {
+        headers: {
+          Authorization: `Bearer ${import.meta.env.VITE_API_KEY}`,
+        },
+      });
+    }),
+  );
+
+  for (const res of responses) {
+    if (!res.ok) {
+      throw new Error(`HTTP error: status ${res.status}`);
+    }
+  }
+
+  const data = await Promise.all(responses.map((res) => res.json()));
+
+  return data;
+}
+
+export async function fetchCountry(url: string) {
+  const res = await fetch(url, {
+    headers: {
+      Authorization: `Bearer ${import.meta.env.VITE_API_KEY}`,
+    },
+  });
+
   if (!res.ok) {
     throw new Error(`HTTP error: status ${res.status}`);
   }
+
   const data = await res.json();
+
   return data;
 }

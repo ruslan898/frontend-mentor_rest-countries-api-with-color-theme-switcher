@@ -1,3 +1,4 @@
+import { config } from '../../../config';
 import './card.scss';
 
 type CardProps = {
@@ -18,9 +19,12 @@ export default function Card({
   population,
   region,
 }: CardProps) {
+
+  const { flagPlaceholder } = config
+
   return (
     <article className="card">
-      <img src={img} alt={alt} className="card-img"></img>
+      <img src={img || flagPlaceholder} alt={alt} className="card-img"></img>
       <div className="card-descr">
         <h2 className="card-title">{name}</h2>
         <ul className="card-info">
@@ -34,7 +38,7 @@ export default function Card({
           </li>
           <li className="card-info-item">
             <span className="card-info-category">Capital:</span>
-            {capital ?? 'N/A'}
+            {capital || 'N/A'}
           </li>
         </ul>
       </div>
